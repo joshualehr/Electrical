@@ -26,13 +26,52 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Electrical</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">CEC</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="About">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact">
+                            <i class="glyphicon glyphicon-phone"></i>
+                            Contact
+                        </a>
+                    </li>
+                    @if (User.IsInRole("isEmployee"))
+                    {
+                        <li>
+                            <a asp-controller="Project" asp-action="Index">
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                                Projects
+                            </a>
+                        </li>
+                            <li>
+                                <a asp-controller="Material" asp-action="Index">
+                                    <i class="glyphicon glyphicon-barcode"></i>
+                                    Material
+                                </a>
+                            </li>
+                    }
+                    @if (User.IsInRole("canAdminister"))
+                    {
+                        <li>
+                            <a asp-controller="Admin" asp-action="UserIndex">
+                                <i class="glyphicon glyphicon-dashboard"></i>
+                                Admin
+                            </a>
+                        </li>
+                    }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -42,7 +81,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - Electrical</p>
+            <p>&copy; 2017 - Complete Electric and Communications, Inc.</p>
         </footer>
     </div>
 
