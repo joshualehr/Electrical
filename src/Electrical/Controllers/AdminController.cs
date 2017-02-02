@@ -164,7 +164,10 @@ namespace Electrical.Controllers
                 {
                     return RedirectToAction(nameof(AdminController.RoleIndex));
                 }
-                AddErrors(result);
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
             return View(model);
         }
@@ -187,16 +190,5 @@ namespace Electrical.Controllers
             }
             return View(model);
         }
-
-        // Helpers
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error.Description);
-            }
-        }
-
     }
 }

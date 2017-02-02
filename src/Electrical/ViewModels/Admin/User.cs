@@ -11,17 +11,6 @@ namespace Electrical.ViewModels.Admin
         public string Name { get; set; }
     }
 
-    public class UserCreateViewModel
-    {
-        [Required, MaxLength(128), Display(Name = "User Name")]
-        public string UserName { get; set; }
-
-        [Required, DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        public IList<RoleCheckBox> Roles { get; set; }
-    }
-
     public class UserIndexViewModel
     {
         public ICollection<ApplicationUser> Users { get; set; }
@@ -61,24 +50,6 @@ namespace Electrical.ViewModels.Admin
         public string PhoneNumber { get; set; }
 
         public IList<RoleCheckBox> Roles { get; set; }
-    }
-
-    public class UserResetPasswordViewModel
-    {
-        public string UserId { get; set; }
-
-        public string Username { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Order = 1)]
-        public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "* Does not match")]
-        [Display(Name = "Confirm", Prompt = "Confirm", Order = 2)]
-        public string ComfirmPassword { get; set; }
     }
 
     public class DeleteUserViewModel
