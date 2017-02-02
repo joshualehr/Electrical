@@ -1,0 +1,85 @@
+@model Electrical.ViewModels.Admin.EditUserViewModel
+
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h2>Edit User</h2>
+<hr />
+
+<form asp-action="EditUser" asp-antiforgery="true" method="post" class="form-horizontal" role="form">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="FirstName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Company" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Company" class="form-control" />
+            <span asp-validation-for="Company" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Title" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Trade" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Trade" class="form-control" />
+            <span asp-validation-for="Trade" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Roles" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <ul class="list-group">
+                @Html.EditorFor(model => model.Roles)
+            </ul>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 btn-group">
+            <a asp-action="UserIndex" class="btn btn-warning">
+                <i class="glyphicon glyphicon-ban-circle" title="Cancel"></i>
+                Cancel
+            </a>
+            <input type="submit" value="Save" class="btn btn-danger" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

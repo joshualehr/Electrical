@@ -1,0 +1,12 @@
+﻿@model Electrical.ViewModels.Admin.RoleCheckBox
+
+<li class="list-group-item col-md-4">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Name" />
+    <div class="checkbox">
+        <label asp-for="Name">
+            <input asp-for="IsChecked" />
+            @Model.Name
+        </label>
+    </div>
+</li>

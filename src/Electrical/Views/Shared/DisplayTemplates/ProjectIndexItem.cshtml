@@ -1,0 +1,31 @@
+﻿@model Electrical.ViewModels.Project.IndexItemViewModel
+
+<tr class="row">
+    <td class="col-xs-3 col-sm-6 text-left">
+        <a asp-action="Details" asp-route-id="@Model.ProjectId">@Model.Designation</a>
+    </td>
+    <td class="col-xs-9 col-sm-6 text-right">
+        <div class="btn-group">
+            <a asp-controller="Building" asp-action="Index" asp-route-id="@Model.ProjectId" class="btn btn-primary" title="Buildings">
+                <i class="glyphicon glyphicon-home"></i>
+                <span class="hidden-xs">Buildings</span>
+            </a>
+            <a asp-controller="Model" asp-action="Index" asp-route-id="@Model.ProjectId" class="btn btn-info" title="Models">
+                <i class="glyphicon glyphicon-duplicate"></i>
+                <span class="hidden-xs">Models</span>
+            </a>
+            <a asp-controller="Contact" asp-action="Index" asp-route-id="@Model.ProjectId" class="btn btn-success" title="Models">
+                <i class="glyphicon glyphicon-phone"></i>
+                <span class="hidden-xs">Contacts</span>
+            </a>
+            <a asp-action="Edit" asp-route-id="@Model.ProjectId" class="btn btn-warning" title="Edit">
+                <i class="glyphicon glyphicon-edit"></i>
+                <span class="hidden-xs">Edit</span>
+            </a>
+            <a asp-action="Delete" asp-route-id="@Model.ProjectId" class="btn btn-danger" title="Delete" data-post="Are you sure you want to delete the @Model.Designation Project?">
+                <i class="glyphicon glyphicon-remove"></i>
+                <span class="hidden-xs">Delete</span>
+            </a>
+        </div>
+    </td>
+</tr>

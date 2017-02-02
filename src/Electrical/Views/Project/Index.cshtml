@@ -1,0 +1,47 @@
+﻿@model Electrical.ViewModels.Project.IndexViewModel
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<br />
+<div class="row">
+    <div class="text-left col-xs-6 col-sm-3">
+        <div class="btn-group">
+            <a asp-controller="Status" asp-action="Index" class="btn btn-primary" title="Status">
+                <i class="glyphicon glyphicon-stats"></i>
+                <span class="hidden-xs">Status</span>
+            </a>
+            <a asp-controller="UoM" asp-action="Index" class="btn btn-primary" title="U/M">
+                <i class="glyphicon glyphicon-scissors"></i>
+                <span class="hidden-xs">U/M</span>
+            </a>
+        </div>
+    </div>
+    <div class="text-right col-xs-6 col-sm-3 col-sm-push-6">
+        <a asp-action="Create" class="btn btn-success" title="New">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span class="hidden-xs">New</span>
+        </a>
+    </div>
+</div>
+<h2>Projects</h2>
+<table class="table table-striped">
+    <thead>
+        <tr class="row">
+            <th class="col-xs-3 col-sm-6 text-left">
+                Project
+            </th>
+            <th class="col-xs-9 col-sm-6 text-right">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayFor(model => model.Projects)
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/deleteconfirmation.js"></script>
+}

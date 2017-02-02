@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using Electrical.Models;
+using Electrical.Models.AccountViewModels;
+using Electrical.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Electrical.Models;
-using Electrical.Models.AccountViewModels;
-using Electrical.Services;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Electrical.Controllers
 {
@@ -105,7 +103,16 @@ namespace Electrical.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Company = model.Company,
+                    Title = model.Title,
+                    Trade = model.Trade,
+                    PhoneNumber = model.PhoneNumber
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -1,0 +1,25 @@
+﻿@model ApplicationUser
+
+<tr>
+    <td class="col-xs-4 text-left">
+        <a href="mailto://@Model.Email">
+            @Model.FirstName @Model.LastName
+        </a>
+        @Model.PhoneNumber
+    </td>
+    <td class="col-xs-4 text-center">
+        @Model.AllRoles
+    </td>
+    <td class="col-xs-4 text-right">
+        <div class="btn-group">
+            <a asp-action="EditUser" asp-route-id="@Model.Id" class="btn btn-warning">
+                <i class="glyphicon glyphicon-edit" title="Edit"></i>
+                <span class="hidden-xs">Edit</span>
+            </a>
+            <a asp-action="DeleteUser" asp-route-id="@Model.Id" class="btn btn-danger" data-post="Are you sure you want to delete @Model.FirstName @Model.LastName?">
+                <i class="glyphicon glyphicon-remove" title="Delete"></i>
+                <span class="hidden-xs">Delete</span>
+            </a>
+        </div>
+    </td>
+</tr>

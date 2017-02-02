@@ -1,0 +1,94 @@
+﻿@model Project
+
+@{
+    ViewData["Title"] = "Project";
+}
+
+<br />
+<div class="row">
+    <div class="text-left col-xs-12 col-sm-4">
+        <div class="btn-group">
+            <a asp-action="Index" class="btn btn-primary" title="Projects">
+                <i class="glyphicon glyphicon-star-empty"></i>
+                <span class="hidden-xs">Projects</span>
+            </a>
+            <a asp-controller="Building" asp-action="Index" asp-route-id="@Model.ProjectId" title="Buildings" class="btn btn-default">
+                <i class="glyphicon glyphicon-home"></i>
+                <span class="hidden-xs">Buildings</span>
+            </a>
+            <a asp-controller="Model" asp-action="Index" asp-route-id="@Model.ProjectId" title="Models" class="btn btn-info">
+                <i class="glyphicon glyphicon-duplicate"></i>
+                <span class="hidden-xs">Models</span>
+            </a>
+            <a asp-action="Edit" asp-route-id="@Model.ProjectId" title="Edit" class="btn btn-warning visible-xs">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a asp-action="Delete" asp-route-id="@Model.ProjectId" title="Delete" class="btn btn-danger visible-xs" data-post="Are you sure you want to delete the @Model.Designation Project?">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </div>
+    </div>
+    <div class="text-right col-sm-3 col-sm-push-6 hidden-xs">
+        <div class="btn-group">
+            <a asp-action="Edit" asp-route-id="@Model.ProjectId" title="Edit" class="btn btn-warning">
+                <i class="glyphicon glyphicon-edit"></i>
+                Edit
+            </a>
+            <a asp-action="Delete" asp-route-id="@Model.ProjectId" title="Delete" class="btn btn-danger" data-post="Are you sure you want to delete the @Model.Designation Project?">
+                <i class="glyphicon glyphicon-remove"></i>
+                Delete
+            </a>
+        </div>
+    </div>
+    <div class="clearfix visible-xs"></div>
+    <div class="col-xs-12 col-sm-5 col-sm-pull-3">
+        <h2>@Html.DisplayFor(model => model.Designation) Project</h2>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.JobCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.JobCode)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.State)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.State)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PostalCode)
+            </dd>
+        </dl>
+    </div>
+</div>
+@*<h4>Total Buildings @Html.DisplayFor(model => model.BuildingCount)</h4>
+<div class="clearfix visible-xs"></div>
+<div class="row">
+    @Html.DisplayFor(model => model.BuildingsStatus)
+</div>*@
+
+@section Scripts {
+    <script src="~/js/deleteconfirmation.js"></script>
+}
