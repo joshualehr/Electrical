@@ -37,6 +37,14 @@ namespace Electrical.Models
         [Range(0.01, 10000, ErrorMessage = "Must be between 0.01 and 10,000")]
         public double Quantity { get; set; }
 
+        [Required(ErrorMessage = "*")]
+        [Range(0.1, 10000, ErrorMessage = "Must be between 0.1 and 10,000")]
+        public double RoughQuantity { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [Range(0.1, 10000, ErrorMessage = "Must be between 0.1 and 10,000")]
+        public double FinishQuantity { get; set; }
+
         public Guid UnitOfMeasureId { get; set; }
 
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }

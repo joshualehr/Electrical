@@ -7,10 +7,7 @@ namespace Electrical.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Area> Areas { get; set; }
         public DbSet<AreaMaterial> AreaMaterials { get; set; }
@@ -21,11 +18,13 @@ namespace Electrical.Data
         public DbSet<ModelMaterial> ModelMaterials { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<ToDo> Todos { get; set; }
         public DbSet<UnitOfMeasure> UnitsOfMeasure { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.Entity<Area>().ToTable("Area");
             builder.Entity<Area>()
                 .HasIndex(i => i.BuildingId)
@@ -39,6 +38,8 @@ namespace Electrical.Data
                 .HasIndex(i => i.StatusId)
                 .ForSqlServerIsClustered(false)
                 .IsUnique(false);
+
+            builder.Entity<AreaDocument>().ToTable("AreaDocument");
             builder.Entity<AreaDocument>().HasKey(k => new { k.AreaId, k.DocumentId });
             builder.Entity<AreaDocument>()
                 .HasOne(ad => ad.Area)
@@ -48,13 +49,17 @@ namespace Electrical.Data
                 .HasOne(ad => ad.Document)
                 .WithMany(d => d.AreaDocuments)
                 .HasForeignKey(ad => ad.DocumentId);
+
             builder.Entity<AreaMaterial>().ToTable("AreaMaterial");
             builder.Entity<AreaMaterial>().HasKey(k => new { k.AreaId, k.MaterialId });
+
             builder.Entity<Building>().ToTable("Building");
             builder.Entity<Building>()
                 .HasIndex(i => i.ProjectId)
                 .ForSqlServerIsClustered(false)
                 .IsUnique(false);
+
+            builder.Entity<BuildingDocument>().ToTable("BuildingDocument");
             builder.Entity<BuildingDocument>().HasKey(k => new { k.BuildingId, k.DocumentId });
             builder.Entity<BuildingDocument>()
                 .HasOne(bd => bd.Building)
@@ -64,17 +69,22 @@ namespace Electrical.Data
                 .HasOne(bd => bd.Document)
                 .WithMany(d => d.BuildingDocuments)
                 .HasForeignKey(bd => bd.DocumentId);
+
             builder.Entity<Document>().ToTable("Document");
+
             builder.Entity<Material>().ToTable("Material");
             builder.Entity<Material>()
                 .HasIndex(i => i.UnitOfMeasureId)
                 .ForSqlServerIsClustered(false)
                 .IsUnique(false);
+
             builder.Entity<Model>().ToTable("Model");
             builder.Entity<Model>()
                 .HasIndex(i => i.ProjectId)
                 .ForSqlServerIsClustered(false)
                 .IsUnique(false);
+
+            builder.Entity<ModelDocument>().ToTable("ModelDocument");
             builder.Entity<ModelDocument>().HasKey(k => new { k.ModelId, k.DocumentId });
             builder.Entity<ModelDocument>()
                 .HasOne(md => md.Model)
@@ -84,13 +94,17 @@ namespace Electrical.Data
                 .HasOne(md => md.Document)
                 .WithMany(d => d.ModelDocuments)
                 .HasForeignKey(md => md.DocumentId);
+
             builder.Entity<ModelMaterial>().ToTable("ModelMaterial");
             builder.Entity<ModelMaterial>().HasKey(k => new { k.ModelId, k.MaterialId });
+
             builder.Entity<Project>().ToTable("Project");
             builder.Entity<Project>()
                 .HasIndex(i => i.ProjectManagerId)
                 .ForSqlServerIsClustered(false)
                 .IsUnique(false);
+
+            builder.Entity<ProjectContact>().ToTable("ProjectContact");
             builder.Entity<ProjectContact>().HasKey(k => new { k.ProjectId, k.ContactId });
             builder.Entity<ProjectContact>()
                 .HasOne(pc => pc.Project)
@@ -99,8 +113,10 @@ namespace Electrical.Data
                 .OnDelete(DeleteBehavior.Restrict);
             builder.Entity<ProjectContact>()
                 .HasOne(pc => pc.Contact)
-                .WithMany(au => au.ProjectContacts)
-                .HasForeignKey(pd => pd.ContactId);
+                .WithMany(au => au.ProjectsAssignedTo)
+                .HasForeignKey(pc => pc.ContactId);
+
+            builder.Entity<ProjectDocument>().ToTable("ProjectDocument");
             builder.Entity<ProjectDocument>().HasKey(k => new { k.ProjectId, k.DocumentId });
             builder.Entity<ProjectDocument>()
                 .HasOne(pd => pd.Project)
@@ -110,7 +126,27 @@ namespace Electrical.Data
                 .HasOne(pd => pd.Document)
                 .WithMany(d => d.ProjectDocuments)
                 .HasForeignKey(pd => pd.DocumentId);
+
             builder.Entity<Status>().ToTable("Status");
+
+            builder.Entity<ToDo>().ToTable("ToDo");
+            builder.Entity<ToDo>()
+                .HasIndex(i => i.AreaId)
+                .ForSqlServerIsClustered(false)
+                .IsUnique(false);
+            builder.Entity<ToDo>()
+                .HasIndex(i => i.ParentToDoId)
+                .ForSqlServerIsClustered(false)
+                .IsUnique(false);
+            builder.Entity<ToDo>()
+                .HasIndex(i => i.AssignedToId)
+                .ForSqlServerIsClustered(false)
+                .IsUnique(false);
+            builder.Entity<ToDo>()
+                .HasOne(t => t.AssignedTo)
+                .WithMany(au => au.ToDos)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<UnitOfMeasure>().ToTable("UnitOfMeasure");
             builder.Entity<UnitOfMeasure>()
                 .HasMany(um => um.ModelMaterial)

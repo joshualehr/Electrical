@@ -65,6 +65,8 @@ namespace Electrical.Models
         public virtual ICollection<AreaMaterial> AreaMaterial { get; set; }
 
         public virtual ICollection<AreaDocument> AreaDocuments { get; set; }
+
+        public virtual ICollection<ToDo> ToDos { get; set; }
     }
 
     public class AreaMaterial
@@ -76,6 +78,14 @@ namespace Electrical.Models
         [Required(ErrorMessage = "*")]
         [Range(0.01, 10000, ErrorMessage = "Must be between 0.01 and 10,000")]
         public double Quantity { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [Range(0.1, 10000, ErrorMessage = "Must be between 0.1 and 10,000")]
+        public double RoughQuantity { get; set; }
+
+        [Required(ErrorMessage = "*")]
+        [Range(0.1, 10000, ErrorMessage = "Must be between 0.1 and 10,000")]
+        public double FinishQuantity { get; set; }
 
         public Guid UnitOfMeasureId { get; set; }
 

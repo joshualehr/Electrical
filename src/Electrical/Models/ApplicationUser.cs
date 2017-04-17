@@ -42,6 +42,10 @@ namespace Electrical.Models
         [DataType(DataType.Text)]
         public string AllRoles { get; set; }
 
-        public virtual ICollection<ProjectContact> ProjectContacts { get; set; }
+        public virtual ICollection<ToDo> ToDos { get; set; }
+
+        public virtual ICollection<Project> ManagedProjects { get; set; }
+
+        public virtual ICollection<ProjectContact> ProjectsAssignedTo { get; set; }
     }
 }

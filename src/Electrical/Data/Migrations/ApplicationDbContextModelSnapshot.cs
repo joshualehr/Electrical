@@ -13,7 +13,7 @@ namespace Electrical.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.1")
+                .HasAnnotation("ProductVersion", "1.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Electrical.Models.ApplicationUser", b =>
@@ -25,33 +25,33 @@ namespace Electrical.Data.Migrations
                     b.Property<string>("AllRoles");
 
                     b.Property<string>("Company")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
                     b.Property<string>("Email")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash");
 
@@ -62,15 +62,15 @@ namespace Electrical.Data.Migrations
                     b.Property<string>("SecurityStamp");
 
                     b.Property<string>("Title")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Trade")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -90,25 +90,25 @@ namespace Electrical.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address")
-                        .HasAnnotation("MaxLength", 100);
+                        .HasMaxLength(100);
 
                     b.Property<Guid>("BuildingId");
 
                     b.Property<string>("City")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Description");
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<Guid?>("ModelId");
 
                     b.Property<int?>("PostalCode");
 
                     b.Property<string>("State")
-                        .HasAnnotation("MaxLength", 2);
+                        .HasMaxLength(2);
 
                     b.Property<DateTime>("StatusChanged");
 
@@ -149,7 +149,11 @@ namespace Electrical.Data.Migrations
 
                     b.Property<Guid>("MaterialId");
 
+                    b.Property<double>("FinishQuantity");
+
                     b.Property<double>("Quantity");
+
+                    b.Property<double>("RoughQuantity");
 
                     b.Property<Guid>("UnitOfMeasureId");
 
@@ -170,23 +174,23 @@ namespace Electrical.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address")
-                        .HasAnnotation("MaxLength", 100);
+                        .HasMaxLength(100);
 
                     b.Property<string>("City")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Description");
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<int?>("PostalCode");
 
                     b.Property<Guid>("ProjectId");
 
                     b.Property<string>("State")
-                        .HasAnnotation("MaxLength", 2);
+                        .HasMaxLength(2);
 
                     b.HasKey("BuildingId");
 
@@ -220,7 +224,7 @@ namespace Electrical.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("FileLink")
                         .IsRequired();
@@ -240,7 +244,7 @@ namespace Electrical.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("ImagePath");
 
@@ -263,7 +267,7 @@ namespace Electrical.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<Guid>("ProjectId");
 
@@ -296,7 +300,11 @@ namespace Electrical.Data.Migrations
 
                     b.Property<Guid>("MaterialId");
 
+                    b.Property<double>("FinishQuantity");
+
                     b.Property<double>("Quantity");
+
+                    b.Property<double>("RoughQuantity");
 
                     b.Property<Guid>("UnitOfMeasureId");
 
@@ -317,29 +325,29 @@ namespace Electrical.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address")
-                        .HasAnnotation("MaxLength", 100);
+                        .HasMaxLength(100);
 
                     b.Property<string>("City")
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Description");
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.Property<string>("JobCode")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 20);
+                        .HasMaxLength(20);
 
                     b.Property<int?>("PostalCode");
 
                     b.Property<string>("ProjectManagerId")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 450);
+                        .HasMaxLength(450);
 
                     b.Property<string>("State")
-                        .HasAnnotation("MaxLength", 2);
+                        .HasMaxLength(2);
 
                     b.HasKey("ProjectId");
 
@@ -353,7 +361,8 @@ namespace Electrical.Data.Migrations
                 {
                     b.Property<Guid>("ProjectId");
 
-                    b.Property<string>("ContactId");
+                    b.Property<string>("ContactId")
+                        .HasMaxLength(450);
 
                     b.HasKey("ProjectId", "ContactId");
 
@@ -386,13 +395,54 @@ namespace Electrical.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 20);
+                        .HasMaxLength(20);
 
                     b.Property<int>("ListOrder");
 
                     b.HasKey("StatusId");
 
                     b.ToTable("Status");
+                });
+
+            modelBuilder.Entity("Electrical.Models.ToDo", b =>
+                {
+                    b.Property<Guid>("ToDoId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AreaId");
+
+                    b.Property<string>("AssignedToId")
+                        .IsRequired()
+                        .HasMaxLength(450);
+
+                    b.Property<DateTime?>("CompletedOn");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Heading")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<short>("ListOrder");
+
+                    b.Property<Guid?>("ParentToDoId");
+
+                    b.Property<DateTime?>("StartOn");
+
+                    b.HasKey("ToDoId");
+
+                    b.HasIndex("AreaId")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("AssignedToId")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("ParentToDoId")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("ToDo");
                 });
 
             modelBuilder.Entity("Electrical.Models.UnitOfMeasure", b =>
@@ -402,7 +452,7 @@ namespace Electrical.Data.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 50);
+                        .HasMaxLength(50);
 
                     b.HasKey("UnitOfMeasureId");
 
@@ -417,10 +467,10 @@ namespace Electrical.Data.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<string>("Name")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -633,7 +683,7 @@ namespace Electrical.Data.Migrations
             modelBuilder.Entity("Electrical.Models.Project", b =>
                 {
                     b.HasOne("Electrical.Models.ApplicationUser", "ProjectManager")
-                        .WithMany()
+                        .WithMany("ManagedProjects")
                         .HasForeignKey("ProjectManagerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -641,7 +691,7 @@ namespace Electrical.Data.Migrations
             modelBuilder.Entity("Electrical.Models.ProjectContact", b =>
                 {
                     b.HasOne("Electrical.Models.ApplicationUser", "Contact")
-                        .WithMany("ProjectContacts")
+                        .WithMany("ProjectsAssignedTo")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -661,6 +711,22 @@ namespace Electrical.Data.Migrations
                         .WithMany("ProjectDocuments")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Electrical.Models.ToDo", b =>
+                {
+                    b.HasOne("Electrical.Models.Area", "Area")
+                        .WithMany("ToDos")
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Electrical.Models.ApplicationUser", "AssignedTo")
+                        .WithMany("ToDos")
+                        .HasForeignKey("AssignedToId");
+
+                    b.HasOne("Electrical.Models.ToDo", "ParentToDo")
+                        .WithMany("ChildToDos")
+                        .HasForeignKey("ParentToDoId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

@@ -18,7 +18,7 @@ namespace Electrical.Models
 
         [Required]
         [StringLength(20)]
-        [Display(Name = "Job Code")]
+        [Display(Name = "Job Code", Prompt = "Job Code", ShortName = "Code")]
         public string JobCode { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -46,7 +46,7 @@ namespace Electrical.Models
 
         [DataType(DataType.PostalCode)]
         [DisplayFormat(NullDisplayText = "-")]
-        [Display(Name = "Postal Code", Prompt = "PO", ShortName = "PO")]
+        [Display(Name = "Postal Code", Prompt = "Postal Code", ShortName = "PO")]
         [RegularExpression(@"^\d{5}$", ErrorMessage = "Please enter 5 digits")]
         public int? PostalCode { get; set; }
 
@@ -71,6 +71,9 @@ namespace Electrical.Models
     {
         public Guid ProjectId { get; set; }
 
+        [ForeignKey("Contact")]
+        [Required]
+        [StringLength(450)]
         public string ContactId { get; set; }
 
         public virtual Project Project { get; set; }
